@@ -1,3 +1,6 @@
+/* =========================
+   BASE / RESET
+========================= */
 body {
   font-family: Arial, sans-serif;
   background: #0d0d0d;
@@ -9,20 +12,110 @@ body {
   margin: 0;
 }
 
-.quiz-container {
+/* =========================
+   LAYOUT PRINCIPAL
+========================= */
+#quiz-wrapper {
+  display: flex;
+  justify-content: center;   /* centraliza o conjunto na tela */
+  align-items: flex-start;   /* alinha pelo topo */
+  gap: 20px;                 /* espaço entre quiz e sidebar */
+}
+
+/* =========================
+   QUIZ CONTAINER
+========================= */
+#quiz-container {
+  flex: 1;
+  max-width: 700px;
   background: #1a1a1a;
   padding: 20px 30px;
   border-radius: 10px;
-  width: 500px;
   text-align: center;
   box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  color: white;
+
+  /* Mantém altura consistente */
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
+/* =========================
+   TÍTULO
+========================= */
 h1 {
   margin-bottom: 20px;
+  font-size: 32px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.titulo-principal {
+  color: gold;
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+  letter-spacing: 2px;
+}
+
+.subtitulo {
+  color: #00bfff;
+  font-size: 24px;
+  font-weight: normal;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* =========================
+   HEADER DO QUIZ
+========================= */
+#quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 10px 15px;
+  background: #111;
+  border-radius: 8px;
+}
+
+#valor {
+  font-size: 18px;
+  font-weight: bold;
+  color: gold;
+}
+
+#progress {
+  font-size: 16px;
+  color: #ccc;
+}
+
+#timer {
+  font-size: 16px;
+  font-weight: bold;
   color: #00bfff;
 }
 
+/* =========================
+   PERGUNTA
+========================= */
+#question-container {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #1c1c1c;
+  border-radius: 8px;
+}
+
+#question {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+/* =========================
+   OPÇÕES
+========================= */
 #options {
   list-style: none;
   padding: 0;
@@ -46,6 +139,9 @@ h1 {
   color: #fff;
 }
 
+/* =========================
+   BOTÕES E FEEDBACK
+========================= */
 button {
   margin-top: 15px;
   padding: 10px 20px;
@@ -55,6 +151,7 @@ button {
   font-size: 16px;
   border-radius: 6px;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 button:hover {
@@ -66,10 +163,114 @@ button:hover {
   font-weight: bold;
 }
 
+/* =========================
+   SIDEBAR (AJUDA)
+========================= */
+#sidebar {
+  width: 200px;
+  background: #2a2a2a;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: stretch;
+}
 
-#valor {
-  font-size: 18px;
-  font-weight: bold;
-  color: gold;
+#sidebar h3 {
+  text-align: center;
   margin-bottom: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+#sidebar button {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+#sidebar button:hover {
+  background: #666;
+}
+
+.help-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.help-info {
+  font-size: 14px;
+  color: #ccc;
+  text-align: center;
+}
+
+
+/* Modal sobreposto */
+.modal {
+  display: none; /* escondido por padrão */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background: #222;
+  color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+}
+
+
+.modal-content p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  background: #00bfff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: #0099cc;
+}
+
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 768px) {
+  #quiz-container {
+    min-height: 70vh;
+  }
+
+  #quiz-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #sidebar {
+    width: 100%;
+    max-width: 400px;
+  }
 }

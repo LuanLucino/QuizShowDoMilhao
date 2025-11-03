@@ -1,236 +1,34 @@
-// Banco de perguntas unificado (Família + Ryoko + Hayate + Dohiko)
-const questionBank = [
-  // Família
-  {
-    question: "Em que contexto histórico surgiu a família Tōryū Shinkai?",
-    options: [
-      "Na era dos samurais feudais",
-      "Após a Segunda Guerra Mundial",
-      "Durante a Revolução Meiji",
-      "Durante a Guerra Fria"
-    ],
-    answer: 1,
-    explanation: "A família surgiu em meio às cinzas deixadas pela Segunda Guerra Mundial, no submundo portuário de Yokohama."
-  },
-  {
-    question: "Qual é o significado do nome ‘Tōryū Shinkai’?",
-    options: [
-      "O Tigre das Águas Profundas",
-      "O Dragão do Abismo do Mar",
-      "O Espírito da Montanha Sagrada",
-      "A Lâmina do Vento Silencioso"
-    ],
-    answer: 1,
-    explanation: "O nome reflete ancestralidade e força estratégica."
-  },
-  {
-    question: "Quais são os valores centrais da família Tōryū Shinkai?",
-    options: [
-      "Violência, medo e dominação",
-      "Sigilo, riqueza e influência política",
-      "Lealdade, respeito e consequência",
-      "Ambição, poder e fama"
-    ],
-    answer: 2,
-    explanation: "A família é guiada por lealdade inabalável, respeito pela palavra dada e a crença de que toda ação tem seu preço."
-  },
-  {
-    question: "Qual é o símbolo que representa a Tōryū Shinkai?",
-    options: [
-      "Um dragão ascendente entre as ondas",
-      "Um tigre rugindo sob a lua",
-      "Um lobo solitário em meio à neve",
-      "Uma espada envolta em chamas"
-    ],
-    answer: 0,
-    explanation: "O símbolo é o dragão ascendente entre as ondas, representando poder que desperta das profundezas."
-  },
-  {
-    question: "Quais são algumas das operações realizadas pela Tōryū Shinkai?",
-    options: [
-      "Contrabando, espionagem e jogos ilegais",
-      "Tráfico de armas e sequestros",
-      "Lavagem de dinheiro e assassinatos políticos",
-      "Extorsão e controle de territórios urbanos"
-    ],
-    answer: 0,
-    explanation: "A família atua em contrabando, espionagem, tráfico de informações e jogos ilegais, sempre com aparência refinada e discreta."
-  },
+/* =========================
+   Contagem Regressiva
+========================= */
 
-  // Ryoko
-  {
-    question: "Quem é Tōryū Ryoko dentro da estrutura da Tōryū Shinkai?",
-    options: [
-      "A conselheira mais antiga da família",
-      "A atual Oyabun e líder da organização",
-      "A responsável pelas operações financeiras",
-      "A filha de um membro exilado"
-    ],
-    answer: 1,
-    explanation: "Ryoko é a atual Oyabun da Tōryū Shinkai, liderando com estratégia, silêncio e manipulação política."
-  },
-  {
-    question: "Qual foi o impacto da morte de Tōryū Masamune na vida de Ryoko?",
-    options: [
-      "Ela cresceu sob suspeitas de conspiração e jurou restaurar o equilíbrio",
-      "Ela se tornou conselheira da nova liderança",
-      "Ela assumiu o comando imediatamente",
-      "Ela abandonou a família e se exilou"
-    ],
-    answer: 0,
-    explanation: "Ryoko cresceu sob a sombra da morte do pai e jurou restaurar o equilíbrio da organização."
-  },
-  {
-    question: "Qual é a principal característica da liderança de Ryoko?",
-    options: [
-      "Manipulação política e estratégia silenciosa",
-      "Uso da força bruta e intimidação",
-      "Dependência da velha guarda",
-      "Busca por fama e reconhecimento público"
-    ],
-    answer: 0,
-    explanation: "Ryoko lidera com manipulação política, silêncio como arma e paciência como veneno lento."
-  },
-  {
-    question: "O que simbolizam os trajes formais com bordados de dragão dourado usados por Ryoko?",
-    options: [
-      "Conexão com o submundo de Arkham",
-      "Tradição familiar e vigilância ancestral",
-      "Vaidade e status social",
-      "Riqueza acumulada pela organização"
-    ],
-    answer: 1,
-    explanation: "Os trajes lembram que o dragão ancestral ainda vigia, simbolizando tradição e vigilância."
-  },
-  {
-    question: "Como Ryoko aprendeu a lidar com os conselheiros veteranos da família?",
-    options: [
-      "Delegando decisões a terceiros confiáveis",
-      "Usando silêncio, diplomacia e paciência como armas",
-      "Com ameaças e punições públicas",
-      "Ignorando seus conselhos completamente"
-    ],
-    answer: 1,
-    explanation: "Ryoko aprendeu a vencer sem levantar a voz, usando silêncio, diplomacia e paciência."
-  },
+let timerInterval;
+let timeLeft = 60;
 
-  // Hayate
-  {
-    question: "Qual é o papel de Mada Hayate dentro da Tōryū Shinkai?",
-    options: [
-      "Conselheiro espiritual da família",
-      "Braço direito da Oyabun e executor da vontade de Ryoko",
-      "Responsável pelas finanças da organização",
-      "Líder de uma célula rebelde"
-    ],
-    answer: 1,
-    explanation: "Mada Hayate é o braço direito de Ryoko, atuando como executor da vontade da Oyabun e guardião da estrutura da organização."
-  },
-  {
-    question: "O que simboliza o terno negro e a gravata vermelha usados por Hayate?",
-    options: [
-      "Disciplina e promessa de sangue derramado",
-      "Tradição familiar e vigilância ancestral",
-      "Conexão com o submundo de Arkham",
-      "Vaidade e status social"
-    ],
-    answer: 0,
-    explanation: "O terno negro e a gravata vermelha representam a disciplina de Hayate e a promessa de sangue derramado em nome da Tōryū Shinkai."
-  },
-  {
-    question: "Como Ryoko decidiu recrutar Hayate para a Tōryū Shinkai?",
-    options: [
-      "Ao perceber sua lealdade e raiva transformável em força",
-      "Por ser filho de um antigo aliado da família",
-      "Após ele salvar sua vida em uma emboscada",
-      "Por causa de sua experiência financeira"
-    ],
-    answer: 0,
-    explanation: "Ryoko viu em Hayate uma lealdade indomável e uma raiva incandescente que poderiam ser transformadas em aço, decidindo recrutá-lo pessoalmente."
-  },
-  {
-    question: "O que é o Espírito do Dragão do Abismo que habita Hayate?",
-    options: [
-      "Uma maldição ancestral que o enfraquece",
-      "Um símbolo de sabedoria e paz interior",
-      "Um espírito que protege os membros da família",
-      "Uma entidade selada que desperta guerreiros no limite da morte"
-    ],
-    answer: 3,
-    explanation: "O Espírito do Dragão do Abismo é uma entidade ancestral selada nos ossos da terra, que desperta apenas em guerreiros que provam sua força no limite entre vida e morte."
-  },
-  {
-    question: "Como a influência do espírito afetou Hayate?",
-    options: [
-      "Fez com que abandonasse a família",
-      "Tornou-o mais impulsivo e instável",
-      "Deu-lhe uma aura opressora e voz grave com ecos sombrios",
-      "Transformou-o em conselheiro espiritual da Oyabun"
-    ],
-    answer: 2,
-    explanation: "Sob a influência do espírito, Hayate adquiriu uma aura opressora e uma voz grave e ressonante, carregada de ecos sombrios."
-  },
+const timerEl = document.getElementById("timer");
 
-  // Dohiko
-  {
-    question: "Qual é a origem de Dohiko Dokaitsu?",
-    options: [
-      "Filho de um político influente de Tóquio",
-      "Filho indesejado de um traficante fracassado e de uma prostituta viciada",
-      "Descendente direto de samurais da era Meiji",
-      "Órfão criado em templos budistas"
-    ],
-    answer: 1,
-    explanation: "Dohiko nasceu das sombras, filho indesejado de um traficante fracassado e de uma prostituta viciada que morreu quando ele ainda era criança."
-    },
-  {
-    question: "O que Dohiko fazia ainda criança para sobreviver?",
-    options: [
-      "Trabalhava em fábricas clandestinas",
-      "Era entregador de drogas pedalando bicicletas velhas",
-      "Servia como guarda-costas de pequenos criminosos",
-      "Vendia armas no mercado negro"
-    ],
-    answer: 1,
-    explanation: "Ainda criança, Dohiko era usado como entregador de drogas, pedalando bicicletas velhas pelas vielas do interior do Japão."
-  },
-  {
-    question: "Qual foi a reputação que Dohiko construiu em Osaka?",
-    options: [
-      "Um assassino silencioso",
-      "Um fantasma das estradas, veloz e preciso",
-      "Um mestre em manipulação política",
-      "Um contrabandista de armas"
-    ],
-    answer: 1,
-    explanation: "Em Osaka, Dohiko tornou-se um fantasma das estradas, conhecido por sua velocidade, precisão e silêncio."
-  },
-  {
-    question: "Por que a Tōryū Shinkai se interessou por Dohiko?",
-    options: [
-      "Por sua habilidade em negociações políticas",
-      "Por sua força física e brutalidade",
-      "Por sua reputação de entregas rápidas e fugas limpas",
-      "Por ser descendente de antigos aliados"
-    ],
-    answer: 2,
-    explanation: "A Tōryū Shinkai viu em Dohiko não um aliado, mas uma ferramenta: veloz, preciso e calado, especialista em entregas rápidas e fugas limpas."
-  },
-  {
-    question: "Qual é a missão atual de Dohiko Dokaitsu em Arkham?",
-    options: [
-      "Assumir o comando da família",
-      "Treinar novos recrutas",
-      "Realizar entregas rápidas e fugas limpas sem falhas",
-      "Atuar como conselheiro espiritual da Oyabun"
-    ],
-    answer: 2,
-    explanation: "Aos 30 anos, Dohiko foi enviado para Arkham com a missão de realizar entregas rápidas, fugas limpas e resultados sem falhas."
-  }
-];
+function startTimer() {
+  clearInterval(timerInterval); // limpa qualquer timer anterior
+  timeLeft = 60;
+  timerEl.textContent = `⏱️ Tempo: ${timeLeft}s`;
 
-// Configuração da missão
-let totalQuestions = 16;
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerEl.textContent = `⏱️ Tempo: ${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      openFeedbackModal("⏰ Tempo esgotado! Você perdeu!", "orange", false);
+    }
+  }, 1000);
+}
+
+/* =========================
+   Configuração da missão
+========================= */
+
+let skipsRemaining = 3;
+let totalQuestions = 16; // limite fixo de rodadas
 let currentIndex = 0;
 let selectedOption = null;
 let currentQuestion = {};
@@ -246,11 +44,18 @@ const valores = [
 
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
-const feedbackEl = document.getElementById("feedback");
-const nextBtn = document.getElementById("next-btn");
+const feedbackEl = document.getElementById("feedback"); // usado para avisos rápidos
+const modalNextBtn = document.getElementById("modal-next-btn"); // botão do modal final
 const confirmBtn = document.getElementById("confirm-btn");
 const progressEl = document.getElementById("progress");
 const valorEl = document.getElementById("valor");
+const skipCountEl = document.getElementById("skip-count");
+
+// Modal de feedback
+const feedbackModal = document.getElementById("feedback-modal");
+const feedbackMessage = document.getElementById("feedback-message");
+const feedbackNextBtn = document.getElementById("feedback-next-btn");
+const feedbackRestartBtn = document.getElementById("feedback-restart-btn");
 
 function getRandomQuestion() {
   if (usedQuestions.length === questionBank.length) {
@@ -268,9 +73,9 @@ function showQuestion() {
   if (currentIndex >= totalQuestions) {
     questionEl.textContent = "🎉 Missão concluída!";
     optionsEl.innerHTML = "";
-    feedbackEl.textContent = "Você alcançou o valor máximo de 100.000!";
+    feedbackEl.textContent = "Você alcançou o valor máximo!";
     confirmBtn.style.display = "none";
-    nextBtn.style.display = "none";
+    modalNextBtn.style.display = "none";
     return;
   }
 
@@ -289,6 +94,13 @@ function showQuestion() {
 
   progressEl.textContent = `Pergunta ${currentIndex + 1} de ${totalQuestions}`;
   valorEl.textContent = `Valor atual: ${valores[currentIndex]}`;
+
+  // 🔥 Reinicia o cronômetro a cada nova pergunta
+  startTimer();
+
+  // 🔄 Reseta ajudas visuais (cartas/universitários)
+  if (typeof resetCards === "function") resetCards();
+  if (typeof resetUniversitarios === "function") resetUniversitarios();
 }
 
 function selectOption(li, index) {
@@ -306,19 +118,91 @@ function confirmAnswer() {
   }
 
   if (selectedOption === currentQuestion.answer) {
-    feedbackEl.textContent = "✅ Correto! " + currentQuestion.explanation;
-    feedbackEl.style.color = "lightgreen";
+    // Acertou → mostra modal com botão de próxima
+    openFeedbackModal("✅ Correto! " + currentQuestion.explanation, "lightgreen", true);
   } else {
-    feedbackEl.textContent = "❌ Errado! " + currentQuestion.explanation;
-    feedbackEl.style.color = "red";
+    // Errou → mostra modal de derrota com botão Reiniciar
+    openFeedbackModal("❌ Errado! Você perdeu!", "red", false);
   }
 }
 
-confirmBtn.addEventListener("click", confirmAnswer);
-nextBtn.addEventListener("click", () => {
+// Função para abrir modal de feedback
+function openFeedbackModal(message, color, showNext) {
+  feedbackMessage.textContent = message;
+  feedbackMessage.style.color = color;
+
+  if (showNext) {
+    feedbackNextBtn.style.display = "inline-block";
+    feedbackRestartBtn.style.display = "none";
+  } else {
+    feedbackNextBtn.style.display = "none";
+    feedbackRestartBtn.style.display = "inline-block";
+  }
+
+  feedbackModal.style.display = "block";
+}
+
+// Botão dentro do modal de feedback (quando acerta)
+feedbackNextBtn.addEventListener("click", () => {
+  feedbackModal.style.display = "none"; // fecha modal
   currentIndex++;
   showQuestion();
 });
+
+// Botão Reiniciar (quando erra)
+feedbackRestartBtn.addEventListener("click", () => {
+  resetGame();
+});
+
+function skipQuestion() {
+  if (skipsRemaining > 0) {
+    skipsRemaining--;
+    skipCountEl.textContent = skipsRemaining; // 🔄 Atualiza contador no botão
+    feedbackEl.textContent = `⏭️ Você pulou a pergunta! Restam ${skipsRemaining} pulos.`;
+    feedbackEl.style.color = "cyan";
+
+    // Sorteia uma nova pergunta sem avançar o índice
+    currentQuestion = getRandomQuestion();
+    questionEl.textContent = currentQuestion.question;
+    optionsEl.innerHTML = "";
+    selectedOption = null;
+
+    currentQuestion.options.forEach((opt, index) => {
+      const li = document.createElement("li");
+      li.textContent = opt;
+      li.addEventListener("click", () => selectOption(li, index));
+      optionsEl.appendChild(li);
+    });
+
+    progressEl.textContent = `Pergunta ${currentIndex + 1} de ${totalQuestions}`;
+    valorEl.textContent = `Valor atual: ${valores[currentIndex]}`;
+
+    startTimer(); // reinicia o cronômetro ao pular
+  } else {
+    feedbackEl.textContent = "⚠️ Você já usou todos os 3 pulos!";
+    feedbackEl.style.color = "orange";
+  }
+}
+
+const skipBtn = document.getElementById("skip-btn");
+skipBtn.addEventListener("click", skipQuestion);
+
+confirmBtn.addEventListener("click", confirmAnswer);
+modalNextBtn.addEventListener("click", () => {
+  currentIndex++;
+  showQuestion();
+});
+
+// Função para reiniciar o jogo
+function resetGame() {
+  currentIndex = 0;
+  skipsRemaining = 3;
+  usedQuestions = [];
+  skipCountEl.textContent = skipsRemaining;
+  confirmBtn.style.display = "inline-block";
+  feedbackModal.style.display = "none";
+  showQuestion();
+}
 
 // Inicia o quiz
 showQuestion();

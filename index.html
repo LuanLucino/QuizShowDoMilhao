@@ -2,24 +2,112 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Missão Quiz - Tōryū Shinkai</title>
+  <title>Show do Milhão - Tōryū Shinkai</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilo base dos modais */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      background: #222;
+      color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+    /* Modal de derrota com fundo vermelho */
+    .modal-content.lose {
+      background: #600;
+      border: 2px solid #f00;
+    }
+  </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>Missão Quiz - Tōryū Shinkai</h1>
-    <p id="progress">Pergunta 1 de 16</p>
-    <p id="valor">Valor atual: 100</p>
+  <!-- Wrapper que junta quiz + sidebar -->
+  <div id="quiz-wrapper">
 
-    <div id="question-container">
-      <p id="question"></p>
+    <!-- Container principal do quiz -->
+    <div id="quiz-container">
+      <h1>
+        <span class="titulo-principal">Show do Milhão</span><br>
+        <span class="subtitulo">Tōryū Shinkai</span>
+      </h1>
+
+      <!-- Cabeçalho do quiz -->
+      <div id="quiz-header">
+        <div id="valor"></div>
+        <div id="progress"></div>
+        <div id="timer"></div>
+      </div>
+
+      <!-- Pergunta -->
+      <div id="question-container">
+        <div id="question"></div>
+      </div>
+
+      <!-- Opções -->
       <ul id="options"></ul>
+
+      <!-- Feedback inline (avisos rápidos) -->
+      <div id="feedback"></div>
+
+      <!-- Botão único -->
+      <button id="confirm-btn">Confirmar Resposta</button>
     </div>
 
-    <button id="confirm-btn">Confirmar Resposta</button>
-    <button id="next-btn">Próxima Pergunta</button>
-    <p id="feedback"></p>
+    <!-- Aba lateral de ajuda -->
+    <div id="sidebar">
+      <h3>Ajuda</h3>
+
+      <!-- Pular Pergunta -->
+      <div class="help-block">
+        <button id="skip-btn">⏭️ Pular Pergunta (<span id="skip-count">3</span>)</button>
+      </div>
+
+      <!-- Universitários -->
+      <div class="help-block">
+        <button id="uni-btn">🎓 Universitários</button>
+        <div id="uni-timer" class="help-info"></div>
+      </div>
+
+      <!-- Cartas -->
+      <div class="help-block">
+        <button id="cards-btn">🃏 Usar Cartas</button>
+        <div id="cards-container" class="help-info"></div>
+      </div>
+    </div>
   </div>
+
+  <!-- Modal de Feedback por resposta -->
+<div id="feedback-modal" class="modal">
+  <div id="feedback-modal-content" class="modal-content">
+    <p id="feedback-message"></p>
+    <button id="feedback-next-btn">Próxima Pergunta</button>
+    <button id="feedback-restart-btn">Reiniciar</button>
+  </div>
+</div>
+
+
+  <!-- Modal de resultado final -->
+  <div id="result-modal" class="modal">
+    <div class="modal-content">
+      <p id="result-message"></p>
+      <button id="modal-next-btn">Próxima Pergunta</button>
+    </div>
+  </div>
+
+  <!-- Scripts (ordem corrigida) -->
+  <script src="bancodequestoes.js"></script>
   <script src="script.js"></script>
+  <script src="script2.js"></script>
 </body>
 </html>
