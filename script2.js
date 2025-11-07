@@ -105,6 +105,10 @@ let uniTimerInterval;
 let uniTimeLeft = 60;
 
 function startUniTimer() {
+  // 🔥 Pausa o timer principal para não conflitar
+  clearInterval(timerInterval);
+
+  // Reinicia o timer dos universitários
   clearInterval(uniTimerInterval);
   uniTimeLeft = 60;
 
@@ -116,6 +120,9 @@ function startUniTimer() {
       clearInterval(uniTimerInterval);
       uniTimerEl.textContent = "⏰ Tempo dos universitários acabou!";
       uniTimerEl.style.color = "orange";
+
+      // 🔥 Falha igual ao tempo principal
+      openFeedbackModal("⏰ Tempo dos universitários acabou! Você perdeu!", "red", false);
     }
   }, 1000);
 
@@ -123,6 +130,7 @@ function startUniTimer() {
   feedbackEl.textContent = "🎓 Tempo dos universitários iniciado!";
   feedbackEl.style.color = "cyan";
   uniTimerEl.textContent = `⏱️ ${uniTimeLeft}s`;
+  uniTimerEl.style.color = "cyan";
 }
 
 function useUniversitarios() {
